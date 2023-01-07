@@ -1,0 +1,12 @@
+.container {
+  height: inherit;
+  /* background: linear-gradient(
+    45deg,
+    rgb(249, 212, 139) 0%,
+    rgb(249, 212, 139) 50%,
+    rgb(151, 146, 227) 50%,
+    rgb(151, 146, 227) 100%
+  ); */
+}
+
+/* https://coolors.co/61e786-5a5766-f9d48b-48435c-9792e3 */

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-
+import "./PomodoroTimer.css";
 const one_second = 1 / 60;
-const initial_time = 1 * 60;
+const initial_time = 25 * 60;
 
 const padWithZero = (number): string | number => {
   if (number < 10) return `0${number}`;
@@ -16,14 +16,14 @@ const PomodoroTimer = () => {
 
   const [isActive, setIsActive] = useState(false);
 
-
   useEffect(() => {
     if (isActive) {
       const intervalId = setInterval(() => {
         setRemainingTime((remainingTime) =>
           Math.floor(remainingTime - one_second)
         );
-      }, 1000);
+        console.log(Math.floor(remainingTime - one_second));
+      }, 100);
 
       if (remainingTime === 0) {
         setIsActive(false);
@@ -55,22 +55,38 @@ const PomodoroTimer = () => {
     setIsActive(false);
   };
 
+  const getPercentage = () =>
+    (remainingTime - initial_time / (remainingTime + initial_time / 2)) * 100;
+
+  const percentage = 40 //getPercentage();
+  
+  const ContainerStyle = {
+    background: `linear-gradient(
+      45deg,
+      rgb(249, 212, 139) 0%,
+      rgb(249, 212, 139) ${percentage}%,
+      rgb(151, 146, 227) ${percentage}%,
+      rgb(151, 146, 227) 100%
+    )`,
+  };
   return (
     <>
-      {!remainingTime && <p>Time is up! Take a break.</p>}
+      <div className="container" style={ContainerStyle}>
+        {!remainingTime && <p>Time is up! Take a break.</p>}
 
-      {!!remainingTime && (
-        <p>
-          {padWithZero(minutes)}
-          {!!seconds && `:${seconds}`}
-        </p>
-      )}
+        {!!remainingTime && (
+          <p>
+            {padWithZero(minutes)}
+            {!!seconds && `:${seconds}`}
+          </p>
+        )}
 
-      <div>
-        <button onClick={handleStartButtonClick}>
-          {isActive && remainingTime ? "Pause" : "Start"}
-        </button>
-        {!!remainingTime && <button onClick={restartTimer}>Stop</button>}
+        <div>
+          <button onClick={handleStartButtonClick}>
+            {isActive && remainingTime ? "Pause" : "Start"}
+          </button>
+          {!!remainingTime && <button onClick={restartTimer}>Stop</button>}
+        </div>
       </div>
     </>
   );
