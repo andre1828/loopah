@@ -13,4 +13,23 @@
   justify-content: center;
 }
 
+.time {
+  font-size: calc(48px + 1vw);
+  /* fontSize: 'calc(46px + 1vw) */
+}
+
+.button {
+  /* style={{backgroundColor: '#bd632f'}} */
+  background-color: #273e47;
+  color: #f9d48b;
+  border-radius: 50%;
+  width: 54px;
+  height: 54px;
+}
+
+.button img {
+  margin: auto;
+  display: block;
+}
+
 /* https://coolors.co/61e786-5a5766-f9d48b-48435c-9792e3 */

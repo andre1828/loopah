@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import "./PomodoroTimer.css";
+import PlayIcon from "./../../assets/play.svg"
+import PauseIcon from "./../../assets/pause.svg"
 const one_second = 1 / 60;
 const initial_time = .1 * 60;
 
@@ -64,17 +66,17 @@ const PomodoroTimer = () => {
         {!remainingTime && <p>Time is up! Take a break.</p>}
 
         {!!remainingTime && (
-          <p>
+          <p className="time">
             {padWithZero(minutes)}
             {!!seconds && `:${seconds}`}
           </p>
         )}
 
         <div>
-          <button onClick={handleStartButtonClick}>
-            {isActive && remainingTime ? "Pause" : "Start"}
+          <button className="button"  onClick={handleStartButtonClick}>
+            {isActive && remainingTime ? <img src={PauseIcon} alt="Pause" /> : <img src={PlayIcon} alt="Start"/> }
           </button>
-          {!!remainingTime && <button onClick={restartTimer}>Stop</button>}
+          {!!remainingTime && <button className="button" onClick={restartTimer}>Reset</button>}
         </div>
         <div>
           <p>completed pomodoros: {completedPomodoros}</p>

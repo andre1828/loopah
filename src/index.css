@@ -13,6 +13,13 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  background: rgb(249, 212, 139);
+  background: linear-gradient(
+    45deg,
+    rgba(249, 212, 139, 1) 0%,
+    rgba(177, 248, 242, 1) 100%
+  );
 }
 
 a {
@@ -58,7 +65,7 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
+    color: #273E47;
     background-color: #ffffff;
   }
   a:hover {
