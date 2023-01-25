@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import "./PomodoroTimer.css";
-import PlayIcon from "./../../assets/play.svg"
-import PauseIcon from "./../../assets/pause.svg"
+import PlayIcon from "./../../assets/play.svg";
+import PauseIcon from "./../../assets/pause.svg";
+import ResetIcon from "./../../assets/reset2.svg";
 const one_second = 1 / 60;
-const initial_time = .1 * 60;
+const initial_time = 0.1 * 60;
 
 const padWithZero = (number): string | number => {
   if (number < 10) return `0${number}`;
@@ -72,11 +73,20 @@ const PomodoroTimer = () => {
           </p>
         )}
 
-        <div>
-          <button className="button"  onClick={handleStartButtonClick}>
-            {isActive && remainingTime ? <img src={PauseIcon} alt="Pause" /> : <img src={PlayIcon} alt="Start"/> }
+        <div className="button-container">
+          <button className="button" onClick={handleStartButtonClick}>
+            {isActive && remainingTime ? (
+              <img src={PauseIcon} alt="Pause" />
+            ) : (
+              <img src={PlayIcon} alt="Start" />
+            )}
           </button>
-          {!!remainingTime && <button className="button" onClick={restartTimer}>Reset</button>}
+          {!!remainingTime && (
+            <button className="button" onClick={restartTimer}>
+              {" "}
+              <img src={ResetIcon} alt="Reset" />{" "}
+            </button>
+          )}
         </div>
         <div>
           <p>completed pomodoros: {completedPomodoros}</p>
