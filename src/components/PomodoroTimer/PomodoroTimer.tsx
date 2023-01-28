@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import "./PomodoroTimer.css";
-import PlayIcon from "./../../assets/play.svg";
-import PauseIcon from "./../../assets/pause.svg";
-import ResetIcon from "./../../assets/reset2.svg";
+import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
+import PauseRoundedIcon from "@mui/icons-material/PauseRounded";
+import RefreshRoundedIcon from "@mui/icons-material/RefreshRounded";
 const one_second = 1 / 60;
 const initial_time = 0.1 * 60;
 
@@ -64,33 +64,36 @@ const PomodoroTimer = () => {
   return (
     <>
       <div className="container">
-        {!remainingTime && <p>Time is up! Take a break.</p>}
+        {!remainingTime && (
+          <p className="secondary-text done-text">Time is up! Take a break.</p>
+        )}
 
         {!!remainingTime && (
-          <p className="time">
-            {padWithZero(minutes)}
-            {!!seconds && `:${seconds}`}
-          </p>
+          <div className="circle">
+            <p className="time">
+              {padWithZero(minutes)}
+              {!!seconds && `:${seconds}`}
+            </p>
+          </div>
         )}
 
         <div className="button-container">
           <button className="button" onClick={handleStartButtonClick}>
             {isActive && remainingTime ? (
-              <img src={PauseIcon} alt="Pause" />
+              <PauseRoundedIcon fontSize="large" />
             ) : (
-              <img src={PlayIcon} alt="Start" />
+              <PlayArrowRoundedIcon fontSize="large" />
             )}
           </button>
           {!!remainingTime && (
             <button className="button" onClick={restartTimer}>
-              {" "}
-              <img src={ResetIcon} alt="Reset" />{" "}
+              <RefreshRoundedIcon fontSize="large" />
             </button>
           )}
         </div>
-        <div>
-          <p>completed pomodoros: {completedPomodoros}</p>
-        </div>
+        <p className="secondary-text">
+          completed pomodoros: {completedPomodoros}
+        </p>
       </div>
     </>
   );
