@@ -1,12 +1,20 @@
 import { useEffect, useState } from "react";
-import "./PomodoroTimer.css";
 import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
 import PauseRoundedIcon from "@mui/icons-material/PauseRounded";
 import RefreshRoundedIcon from "@mui/icons-material/RefreshRounded";
+import {
+  Container,
+  Circle,
+  SecondaryText,
+  ButtonContainer,
+  Button,
+  Time,
+} from "..";
+
 const one_second = 1 / 60;
 const initial_time = 0.1 * 60;
 
-const padWithZero = (number): string | number => {
+const padWithZero = (number: number): string | number => {
   if (number < 10) return `0${number}`;
 
   return number;
@@ -63,38 +71,36 @@ const PomodoroTimer = () => {
 
   return (
     <>
-      <div className="container">
+      <Container>
         {!remainingTime && (
-          <p className="secondary-text done-text">Time is up! Take a break.</p>
+          <SecondaryText> Time is up! Take a break. </SecondaryText>
         )}
 
         {!!remainingTime && (
-          <div className="circle">
-            <p className="time">
+          <Circle>
+            <Time>
               {padWithZero(minutes)}
               {!!seconds && `:${seconds}`}
-            </p>
-          </div>
+            </Time>
+          </Circle>
         )}
 
-        <div className="button-container">
-          <button className="button" onClick={handleStartButtonClick}>
+        <ButtonContainer>
+          <Button onClick={handleStartButtonClick}>
             {isActive && remainingTime ? (
               <PauseRoundedIcon fontSize="large" />
             ) : (
               <PlayArrowRoundedIcon fontSize="large" />
             )}
-          </button>
+          </Button>
           {!!remainingTime && (
-            <button className="button" onClick={restartTimer}>
+            <Button onClick={restartTimer}>
               <RefreshRoundedIcon fontSize="large" />
-            </button>
+            </Button>
           )}
-        </div>
-        <p className="secondary-text">
-          completed pomodoros: {completedPomodoros}
-        </p>
-      </div>
+        </ButtonContainer>
+        <SecondaryText>completed pomodoros: {completedPomodoros}</SecondaryText>
+      </Container>
     </>
   );
 };
